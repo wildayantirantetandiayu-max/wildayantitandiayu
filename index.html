@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wildayanti Rante Tandiayu — Portofolio</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+  <!-- CSS buatan sendiri (harus setelah Bootstrap agar bisa menimpa) -->
+  <style>
+/* =========================================================
+   CSS TAMBAHAN (dipasang setelah Bootstrap)
+   ========================================================= */
+:root{
+  --paper:       #F7F5F1;
+  --ink:         #14171F;
+  --ink-soft:    #1B1D22;
+  --indigo:      #35408E;
+  --indigo-deep: #242B63;
+  --amber:       #E8A33D;
+  --muted:       #6B6F76;
+  --line:        rgba(27,29,34,0.12);
+  --line-light:  rgba(247,245,241,0.16);
+
+  --font-display: "IBM Plex Serif", Georgia, serif;
+  --font-body:    "IBM Plex Sans", Arial, sans-serif;
+  --font-mono:    "IBM Plex Mono", Consolas, monospace;
+}
+
+html{ scroll-behavior: smooth; scroll-padding-top: 80px; }
+body{
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink-soft);
+}
+h1, h2, h3{ font-family: var(--font-display); color: var(--ink); }
+
+/* ---------- Navbar ---------- */
+.site-nav{
+  background: rgba(247,245,241,0.94);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--line);
+}
+.brand{
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.brand span{ color: var(--indigo); }
+.site-nav .nav-link{
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  position: relative;
+}
+.site-nav .nav-link::after{
+  content: "";
+  position: absolute;
+  left: 0.5rem; bottom: 2px;
+  width: 0; height: 1.5px;
+  background: var(--amber);
+  transition: width .2s ease;
+}
+.site-nav .nav-link:hover::after{ width: calc(100% - 1rem); }
+
+/* ---------- Tombol ---------- */
+.btn-ink{
+  background: var(--ink);
+  color: var(--paper);
+  border: 1.5px solid var(--ink);
+  border-radius: 0;
+}
+.btn-ink:hover{ background: var(--indigo); border-color: var(--indigo); color: var(--paper); }
+.btn-outline-ink{
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--ink);
+  border-radius: 0;
+}
+.btn-outline-ink:hover{ background: var(--ink); color: var(--paper); }
+
+/* ---------- Hero ---------- */
+.eyebrow-note{
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--indigo);
+  margin-bottom: 18px;
+}
+.hero-title{ font-weight: 500; margin-bottom: 22px; }
+.hero-desc{ color: var(--muted); max-width: 46ch; font-size: 1.05rem; }
+.hero-img{ width: 100%; height: auto; border: 1px solid var(--line); }
+
+/* ---------- Judul bagian ---------- */
+.section-head{ max-width: 46ch; }
+.section-head h2{ font-size: 1.9rem; font-weight: 500; margin-bottom: 10px; }
+.section-head p{ color: var(--muted); margin: 0; }
+.section-head-light h2{ color: var(--paper); }
+.section-head-light p{ color: rgba(247,245,241,0.7); }
+
+/* ---------- About ---------- */
+.about{ border-top: 1px solid var(--line); }
+.bio-facts .list-group-item{
+  background: transparent;
+  border-color: var(--line);
+  padding: 10px 0;
+  font-size: 0.94rem;
+}
+.fact-label{
+  flex: 0 0 140px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding-top: 2px;
+}
+.edu-heading{ font-size: 1.1rem; font-weight: 500; margin-bottom: 18px; }
+.edu-item{
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+}
+.edu-item:last-child{ border-bottom: 1px solid var(--line); }
+.edu-year{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--indigo); }
+.edu-name{ font-weight: 600; }
+.edu-place{ color: var(--muted); font-size: 0.92rem; }
+
+/* ---------- Skills ---------- */
+.skills{ background: var(--ink); color: var(--paper); }
+.skill-card{
+  padding: 28px 24px;
+  border: 1px solid var(--line-light);
+  transition: border-color .18s ease;
+}
+.skill-card:hover{ border-color: var(--amber); }
+.skill-tag{
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--amber);
+  border: 1px solid rgba(232,163,61,0.4);
+  padding: 3px 9px;
+  margin-bottom: 16px;
+}
+.skill-card h3{ font-size: 1.08rem; font-weight: 500; color: var(--paper); margin-bottom: 8px; }
+.skill-card p{ color: rgba(247,245,241,0.65); font-size: 0.92rem; margin: 0; }
+
+/* ---------- Portfolio ---------- */
+.portfolio{ border-top: 1px solid var(--line); }
+.work-card{
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  transition: border-color .18s ease;
+}
+.work-card:hover{ border-color: var(--indigo); }
+.work-img{
+  border-radius: 0;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 1px solid var(--line);
+}
+.work-index{
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--indigo);
+  margin-bottom: 8px;
+}
+.work-card .card-title{ font-size: 1.15rem; font-weight: 500; }
+.work-card .card-text{ color: var(--muted); font-size: 0.94rem; }
+
+/* ---------- Contact ---------- */
+.contact{ background: var(--indigo-deep); color: var(--paper); }
+.contact-card{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  height: 100%;
+  padding: 22px 24px;
+  border: 1px solid var(--line-light);
+  color: var(--paper);
+  text-decoration: none;
+  transition: border-color .18s ease, background .18s ease;
+}
+a.contact-card:hover{
+  border-color: var(--amber);
+  background: rgba(247,245,241,0.04);
+  color: var(--paper);
+}
+.contact-label{ font-family: var(--font-mono); font-size: 0.74rem; color: var(--amber); }
+.contact-value{ font-size: 1rem; }
+
+/* ---------- Footer ---------- */
+.site-footer{ background: var(--ink); }
+.site-footer p{ color: rgba(247,245,241,0.55); font-size: 0.85rem; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *{ transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+  <!-- ============ HEADER / NAVIGASI ============ -->
+  <nav class="navbar navbar-expand-lg sticky-top site-nav">
+    <div class="container">
+      <a class="navbar-brand brand" href="#home">Wildayanti Rante Tandiayu </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuUtama" aria-controls="menuUtama" aria-expanded="false" aria-label="Buka menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="menuUtama">
+        <ul class="navbar-nav ms-auto gap-lg-3">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="home" class="hero py-5">
+      <div class="container py-lg-4">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6 order-2 order-lg-1">
+            <p class="eyebrow-note">Mahasiswa Administrasi Bisnis · Semester 5</p>
+            <h1 class="display-5 hero-title">Wildayanti Rante Tandiayu</h1>
+            <p class="lead hero-desc">
+              Saya Wildayanti Rante Tandiayu, biasa di sapa wilda. saya adalah mahasiswa administrasi bisnis yang suka
+              membuat website.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <a href="#portfolio" class="btn btn-ink px-4 py-2">Lihat karya saya</a>
+              <a href="#contact" class="btn btn-outline-ink px-4 py-2">Hubungi saya</a>
+            </div>
+          </div>
+          <div class="col-lg-6 order-1 order-lg-2">
+            <img src="will.jpeg" width="400" height="450">
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="about py-5">
+      <div class="container py-lg-4">
+        <div class="section-head mb-5">
+          <h2>Tentang Saya</h2>
+          <p>Sedikit cerita, latar pendidikan, dan hal-hal yang saya minati.</p>
+        </div>
+
+        <div class="row g-5">
+          <div class="col-lg-7">
+            <p>
+              Saya mahasiswa Administrasi Bisnis yang tertarik pada pengembangan web. Bagi saya,
+              teknologi paling menarik ketika bisa menyelesaikan masalah nyata, baik itu untuk
+              tugas kuliah, kegiatan organisasi, maupun proyek pribadi.
+            </p>
+            <p>
+              Di luar coding, saya aktif di organisasi mahasiswa sebagai koordinator dokumentasi
+              acara, senang belajar hal baru secara mandiri, dan nyaman berbicara di depan umum
+              untuk presentasi maupun memandu acara.
+            </p>
+
+            <ul class="list-group list-group-flush bio-facts mt-4">
+              <li class="list-group-item d-flex gap-3"><span class="fact-label">Nama</span><span>Wildayanti Rante Tandiayu</span></li>
+              <li class="list-group-item d-flex gap-3"><span class="fact-label">Domisili</span><span>Makassar, Sulawesi Selatan</span></li>
+              <li class="list-group-item d-flex gap-3"><span class="fact-label">Program studi</span><span>D3 Administrasi Bisnis</span></li>
+              <li class="list-group-item d-flex gap-3"><span class="fact-label">Minat</span><span>Web Development</span></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-5">
+            <h3 class="edu-heading">Pendidikan</h3>
+            <div class="edu-item">
+              <span class="edu-year">2024 — sekarang</span>
+              <span class="edu-name">D3 Administrasi Bisnis</span>
+              <span class="edu-place">Politeknik Negeri Ujung Pandang</span>
+            </div>
+            <div class="edu-item">
+              <span class="edu-year">2021 — 2024</span>
+              <span class="edu-name">SMA Katolik Makale</span>
+              <span class="edu-place">Jurusan MIPA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============ SKILLS ============ -->
+    <section id="skills" class="skills py-5">
+      <div class="container py-lg-4">
+        <div class="section-head section-head-light mb-5">
+          <h2>Kemampuan</h2>
+          <p>Hal-hal yang sedang saya kuasai dan terus saya latih.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-card h-100">
+              <span class="skill-tag">Web</span>
+              <h3>HTML, CSS &amp; Bootstrap</h3>
+              <p>Membangun halaman web dari struktur, tampilan, hingga layout yang responsif.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-card h-100">
+              <span class="skill-tag">Desain</span>
+              <h3>UI/UX Design</h3>
+              <p>Merancang alur dan tampilan aplikasi menggunakan Figma.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-card h-100">
+              <span class="skill-tag">Komunikasi</span>
+              <h3>Public Speaking</h3>
+              <p>Terbiasa presentasi tugas, memandu acara, dan diskusi kelompok.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-card h-100">
+              <span class="skill-tag">Perkantoran</span>
+              <h3>Microsoft Office</h3>
+              <p>Word, Excel, dan PowerPoint untuk laporan dan presentasi kuliah.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <div class="skill-card h-100">
+              <span class="skill-tag">Kolaborasi</span>
+              <h3>Git &amp; GitHub</h3>
+              <p>Mengelola versi kode dan berkolaborasi dalam proyek kelompok.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============ PORTFOLIO ============ -->
+    <section id="portfolio" class="portfolio py-5">
+      <div class="container py-lg-4">
+        <div class="section-head mb-5">
+          <h2>Portofolio</h2>
+          <p>Beberapa karya dan aktivitas yang pernah saya kerjakan.</p>
+        </div>
+
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <div class="card work-card h-100">
+              <img src="uiux.png" class="card-img-top work-img" alt="Tampilan website toko online sederhana">
+              <div class="card-body">
+                <span class="work-index">01</span>
+                <h3 class="card-title">Website E-Commerce Sederhana</h3>
+                <p class="card-text">
+                  Proyek tugas mata kuliah Pemrograman Web: halaman katalog produk, keranjang
+                  belanja, dan tampilan checkout dasar.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card work-card h-100">
+              <img src="uiux.png" class="card-img-top work-img" alt="Rancangan tampilan aplikasi mobile EcoTrack">
+              <div class="card-body">
+                <span class="work-index">02</span>
+                <h3 class="card-title">Desain UI Aplikasi "EcoTrack"</h3>
+                <p class="card-text">
+                  Rancangan antarmuka aplikasi pencatat aktivitas ramah lingkungan, dibuat di Figma.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div class="card work-card h-100">
+              <img src="2bd3ab.jpeg" class="card-img-top work-img" alt="Dokumentasi kegiatan himpunan mahasiswa">
+              <div class="card-body">
+                <span class="work-index">03</span>
+                <h3 class="card-title">Dokumentasi Kegiatan Himpunan</h3>
+                <p class="card-text">
+                  Bertugas sebagai koordinator dokumentasi pada acara seminar kampus, mulai dari
+                  pengambilan foto hingga laporan kegiatan.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="contact py-5">
+      <div class="container py-lg-4">
+        <div class="section-head section-head-light mb-5">
+          <h2>Mari Terhubung</h2>
+          <p>Terbuka untuk kolaborasi proyek, magang, atau sekadar berdiskusi.</p>
+        </div>
+
+        <div class="row g-3">
+          <div class="col-md-6">
+            <a class="contact-card" href="mailto:wildayanti@gmail.com">
+              <span class="contact-label">Email</span>
+              <span class="contact-value">wildayanti@gmail.com</span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a class="contact-card" href="https://instagram.com/wildayanti" target="_blank" rel="noopener">
+              <span class="contact-label">Instagram</span>
+              <span class="contact-value">@wildayanti</span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a class="contact-card" href="https://linkedin.com/in/Wildayanti" target="_blank" rel="noopener">
+              <span class="contact-label">LinkedIn</span>
+              <span class="contact-value">linkedin.com/in/Wildayanti</span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <a class="contact-card" href="https://github.com/wildayanti" target="_blank" rel="noopener">
+              <span class="contact-label">GitHub</span>
+              <span class="contact-value">github.com/wildayanti</span>
+            </a>
+          </div>
+          <div class="col-md-6">
+            <div class="contact-card">
+              <span class="contact-label">Telepon / WhatsApp</span>
+              <span class="contact-value">+62 812-0000-0000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer py-4">
+    <div class="container text-center">
+      <p class="mb-0">&copy; 2026 Wildayanti Rante Tandiayu</p>
+    </div>
+  </footer>
+  <!-- Bootstrap 5 JS (untuk menu hamburger di layar kecil) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
